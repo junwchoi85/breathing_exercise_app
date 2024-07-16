@@ -1,0 +1,6 @@
+{
+  "appTitle": "breathing_exercise_app",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
