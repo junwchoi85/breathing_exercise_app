@@ -3,12 +3,13 @@ import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BreathingBloc extends Bloc<BreathingEvent, BreathingState> {
+  List<SessionData> sessionDataList = [];
+
   BreathingBloc() : super(BreathingInitial()) {
-    // 이벤트 핸들러 등록
     on<StartSession>(_onStartSession);
     on<StopSession>(_onStopSession);
   }
-  // 이벤트 핸들러 : 세션 시작
+
   void _onStartSession(StartSession event, Emitter<BreathingState> emit) async {
     for (int i = 0; i < event.session.repetitions; i++) {
       for (int j = 1; j <= event.session.breaths; j++) {
@@ -19,16 +20,30 @@ class BreathingBloc extends Bloc<BreathingEvent, BreathingState> {
         emit(RetentionInProgress(session: event.session, elapsedSeconds: k));
         await Future.delayed(Duration(seconds: 1));
       }
+      sessionDataList.add(SessionData(
+          sessionNumber: i + 1,
+          retentionTime: event.session.retentionTime,
+          recoveryTime: event.session.recoveryTime));
       for (int l = 0; l <= event.session.recoveryTime; l++) {
         emit(RecoveryInProgress(session: event.session, elapsedSeconds: l));
         await Future.delayed(Duration(seconds: 1));
       }
     }
-    emit(BreathingStopped());
+    emit(BreathingStopped(sessionDataList: sessionDataList));
   }
 
-  // 이벤트 핸들러 : 세션 종료
   void _onStopSession(StopSession event, Emitter<BreathingState> emit) {
-    emit(BreathingStopped());
+    emit(BreathingStopped(sessionDataList: sessionDataList));
   }
+}
+
+class SessionData {
+  final int sessionNumber;
+  final int retentionTime;
+  final int recoveryTime;
+
+  SessionData(
+      {required this.sessionNumber,
+      required this.retentionTime,
+      required this.recoveryTime});
 }

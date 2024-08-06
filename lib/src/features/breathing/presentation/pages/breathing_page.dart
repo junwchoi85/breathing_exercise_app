@@ -1,6 +1,7 @@
 import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/breathing_bloc.dart';
 import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/breathing_event.dart';
 import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/breathing_state.dart';
+import 'package:breathing_exercise_app/src/features/breathing/presentation/pages/report_page.dart';
 import 'package:breathing_exercise_app/src/features/breathing/presentation/pages/retention_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +16,12 @@ class BreathingPage extends StatelessWidget {
           if (state is RetentionInProgress) {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => RetentionPage()),
+            );
+          } else if (state is BreathingStopped) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                  builder: (context) =>
+                      ReportPage(sessionDataList: state.sessionDataList)),
             );
           }
         },

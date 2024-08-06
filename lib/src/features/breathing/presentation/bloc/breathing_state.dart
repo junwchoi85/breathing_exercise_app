@@ -1,4 +1,5 @@
 import 'package:breathing_exercise_app/src/features/breathing/domain/entities/breathing_session.dart';
+import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/breathing_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class BreathingState extends Equatable {
@@ -38,4 +39,11 @@ class RecoveryInProgress extends BreathingState {
   List<Object> get props => [session, elapsedSeconds];
 }
 
-class BreathingStopped extends BreathingState {}
+class BreathingStopped extends BreathingState {
+  final List<SessionData> sessionDataList;
+
+  BreathingStopped({required this.sessionDataList});
+
+  @override
+  List<Object> get props => [sessionDataList];
+}

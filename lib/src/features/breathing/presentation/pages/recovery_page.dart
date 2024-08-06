@@ -1,6 +1,7 @@
 import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/breathing_bloc.dart';
 import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/breathing_event.dart';
 import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/breathing_state.dart';
+import 'package:breathing_exercise_app/src/features/breathing/presentation/pages/report_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +13,11 @@ class RecoveryPage extends StatelessWidget {
       body: BlocListener<BreathingBloc, BreathingState>(
         listener: (context, state) {
           if (state is BreathingStopped) {
-            Navigator.of(context).popUntil((route) => route.isFirst);
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                  builder: (context) =>
+                      ReportPage(sessionDataList: state.sessionDataList)),
+            );
           }
         },
         child: BlocBuilder<BreathingBloc, BreathingState>(
