@@ -1,8 +1,10 @@
+import 'package:breathing_exercise_app/src/features/breathing/data/database.dart';
+import 'package:breathing_exercise_app/src/features/breathing/data/models/session_data.dart';
 import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/breathing_bloc.dart';
 import 'package:flutter/material.dart';
 
 class ReportPage extends StatelessWidget {
-  final List<SessionData> sessionDataList;
+  final List<BreathingSessionData> sessionDataList;
 
   const ReportPage({super.key, required this.sessionDataList});
 
@@ -39,7 +41,16 @@ class ReportPage extends StatelessWidget {
               const SizedBox(height: 16),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    for (var session in sessionDataList) {
+                      var dbSession = DatabaseSessionData(
+                        sessionNumber: session.sessionNumber,
+                        retentionTime: session.retentionTime,
+                        recoveryTime: session.recoveryTime,
+                        date: session.date,
+                      );
+                      await DatabaseHelper.instance.insertSession(dbSession);
+                    }
                     Navigator.of(context).pop();
                   },
                   child: const Text('Back to Home'),

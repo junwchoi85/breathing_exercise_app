@@ -40,7 +40,7 @@ class RecoveryInProgress extends BreathingState {
 }
 
 class BreathingStopped extends BreathingState {
-  final List<SessionData> sessionDataList;
+  final List<BreathingSessionData> sessionDataList;
 
   BreathingStopped({required this.sessionDataList});
 

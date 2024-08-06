@@ -8,7 +8,7 @@ Future setDesktopWindow() async {
   await DesktopWindow.setWindowSize(const Size(1300, 900));
 }
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (UniversalPlatform.isDesktop) {

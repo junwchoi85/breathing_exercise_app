@@ -18,7 +18,7 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    const FlexScheme usedScheme = FlexScheme.deepBlue;
+    const FlexScheme usedScheme = FlexScheme.greenM3;
 
     return BlocProvider(
       create: (context) => BreathingBloc(),
