@@ -1,16 +1,20 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/breathing_bloc.dart';
 import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/breathing_event.dart';
 import 'package:breathing_exercise_app/src/features/breathing/presentation/bloc/breathing_state.dart';
 import 'package:breathing_exercise_app/src/features/breathing/presentation/pages/recovery_page.dart';
 import 'package:breathing_exercise_app/src/features/breathing/presentation/pages/report_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RetentionPage extends StatelessWidget {
+  const RetentionPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Retention Phase')),
+      appBar: AppBar(title: const Text('Retention Phase')),
       body: BlocListener<BreathingBloc, BreathingState>(
         listener: (context, state) {
           if (state is RecoveryInProgress) {
@@ -33,25 +37,25 @@ class RetentionPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Retention Time: ${state.elapsedSeconds} seconds',
-                        style: TextStyle(fontSize: 24)),
+                        style: const TextStyle(fontSize: 24)),
                     CircularProgressIndicator(
                       value: state.elapsedSeconds / state.session.retentionTime,
                       strokeWidth: 8,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         BlocProvider.of<BreathingBloc>(context)
                             .add(StopSession());
                         Navigator.of(context).pop();
                       },
-                      child: Text('Stop Session'),
+                      child: const Text('Stop Session'),
                     ),
                   ],
                 ),
               );
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
         ),
       ),

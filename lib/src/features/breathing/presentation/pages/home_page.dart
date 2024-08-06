@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
 
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => BreathingPage(),
+              builder: (context) => const BreathingPage(),
             ),
           );
           // reset countdown

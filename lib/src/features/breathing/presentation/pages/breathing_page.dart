@@ -12,12 +12,12 @@ class BreathingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Breathing Phase')),
+      appBar: AppBar(title: const Text('Breathing Phase')),
       body: BlocListener<BreathingBloc, BreathingState>(
         listener: (context, state) {
           if (state is RetentionInProgress) {
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => RetentionPage()),
+              MaterialPageRoute(builder: (context) => const RetentionPage()),
             );
           } else if (state is BreathingStopped) {
             Navigator.of(context).pushReplacement(
@@ -35,14 +35,18 @@ class BreathingPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Breaths Count: ${state.breathCount}',
-                        style: TextStyle(fontSize: 24)),
+                        style: const TextStyle(fontSize: 24)),
                     TweenAnimationBuilder(
                       tween: Tween<double>(begin: 0, end: 1),
-                      duration: Duration(seconds: 1),
+                      duration: const Duration(seconds: 1),
                       builder: (context, value, child) {
                         return Transform.scale(
                           scale: value,
-                          child: Icon(Icons.air, size: 100, color: Colors.blue),
+                          child: const Icon(
+                            Icons.air,
+                            size: 100,
+                            color: Colors.blue,
+                          ),
                         );
                       },
                     ),
@@ -52,13 +56,13 @@ class BreathingPage extends StatelessWidget {
                             .add(StopSession());
                         Navigator.of(context).pop();
                       },
-                      child: Text('Stop Session'),
+                      child: const Text('Stop Session'),
                     ),
                   ],
                 ),
               );
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
         ),
       ),

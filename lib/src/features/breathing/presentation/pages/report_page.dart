@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 class ReportPage extends StatelessWidget {
   final List<SessionData> sessionDataList;
 
-  ReportPage({required this.sessionDataList});
+  const ReportPage({super.key, required this.sessionDataList});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Session Report')),
+      appBar: AppBar(title: const Text('Session Report')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -17,12 +17,12 @@ class ReportPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Total Sessions: ${sessionDataList.length}',
-                  style: TextStyle(fontSize: 24)),
-              SizedBox(height: 16),
+                  style: const TextStyle(fontSize: 24)),
+              const SizedBox(height: 16),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: DataTable(
-                  columns: [
+                  columns: const [
                     DataColumn(label: Text('Session')),
                     DataColumn(label: Text('Retention Time')),
                     DataColumn(label: Text('Recovery Time')),
@@ -36,13 +36,13 @@ class ReportPage extends StatelessWidget {
                   }).toList(),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('Back to Home'),
+                  child: const Text('Back to Home'),
                 ),
               ),
             ],
