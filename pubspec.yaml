@@ -11,10 +11,15 @@ environment:
 
 dependencies:
   audioplayers: ^6.0.0
+  desktop_window: ^0.4.0
+  equatable: ^2.0.5
+  flex_color_scheme: ^7.3.1
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
   flutter_localizations:
     sdk: flutter
+  universal_platform: ^1.1.0
 
 dev_dependencies:
   flutter_test:
