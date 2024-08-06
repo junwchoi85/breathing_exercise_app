@@ -34,6 +34,11 @@ class RetentionPage extends StatelessWidget {
                   children: [
                     Text('Retention Time: ${state.elapsedSeconds} seconds',
                         style: TextStyle(fontSize: 24)),
+                    CircularProgressIndicator(
+                      value: state.elapsedSeconds / state.session.retentionTime,
+                      strokeWidth: 8,
+                    ),
+                    SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         BlocProvider.of<BreathingBloc>(context)

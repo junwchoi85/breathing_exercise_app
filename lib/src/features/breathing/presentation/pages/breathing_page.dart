@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BreathingPage extends StatelessWidget {
+  const BreathingPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +36,16 @@ class BreathingPage extends StatelessWidget {
                   children: [
                     Text('Breaths Count: ${state.breathCount}',
                         style: TextStyle(fontSize: 24)),
+                    TweenAnimationBuilder(
+                      tween: Tween<double>(begin: 0, end: 1),
+                      duration: Duration(seconds: 1),
+                      builder: (context, value, child) {
+                        return Transform.scale(
+                          scale: value,
+                          child: Icon(Icons.air, size: 100, color: Colors.blue),
+                        );
+                      },
+                    ),
                     ElevatedButton(
                       onPressed: () {
                         BlocProvider.of<BreathingBloc>(context)

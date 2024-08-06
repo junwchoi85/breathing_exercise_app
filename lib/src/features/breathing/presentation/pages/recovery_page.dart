@@ -29,6 +29,10 @@ class RecoveryPage extends StatelessWidget {
                   children: [
                     Text('Recovery Time: ${state.elapsedSeconds} seconds',
                         style: TextStyle(fontSize: 24)),
+                    LinearProgressIndicator(
+                      value: state.elapsedSeconds / state.session.recoveryTime,
+                    ),
+                    SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         BlocProvider.of<BreathingBloc>(context)
